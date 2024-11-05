@@ -12,19 +12,16 @@ struct avlNode
     avlNode* m_right;
     int height;
 
+    //copy constructor
+    avlNode(avlNode node)
+    {
+
+    }
     avlNode() { m_data = 0; m_left = m_right = nullptr; height = 0;}
     avlNode(int data) { m_data = data; m_left = m_right = nullptr; height = 0;}
-    void setLeft(avlNode* x) {m_left = x;}
-    void setRight(avlNode* x) {m_right = x;}
-    int getData() {return m_data;}
-
-    avlNode* getLeft() {return m_left;}
-    avlNode* getRight() {return m_right;}
-    int getHeight() {return height;}
     void setHeight(){
-        height = m_left->getHeight() - m_right->getHeight();
+        height = m_left->height - m_right->height;
     }
-
     ~avlNode()
     {
         delete m_left;
@@ -55,7 +52,10 @@ class avlTree
         void setRoot();
         
         bool find(int data);
-        
+
+        int getMax();
+        int getMin();
+
         void balance();
   
         //print

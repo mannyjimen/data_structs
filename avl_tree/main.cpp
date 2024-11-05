@@ -2,13 +2,9 @@
 
 int main()
 {
-    avlNode* first = new avlNode(5);
-    avlNode* second = new avlNode(4);
-    avlNode* third = new avlNode(7);
+    avlNode<int> first;
+    first.m_data = 5;
+    std::cout << first.m_data;
 
-    avlTree erd(first);
-    erd.insert(6);
-
-    std::cout << erd.getRoot()->getRight()->getData();
 
 }

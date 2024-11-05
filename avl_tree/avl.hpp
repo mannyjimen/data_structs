@@ -5,66 +5,75 @@
 #include <iostream>
 #include <string>
 
+template <typename T>
 struct avlNode
 {
-    int m_data;
-    avlNode* m_left;
-    avlNode* m_right;
+    T m_data;
+    avlNode<T>* m_left;
+    avlNode<T>* m_right;
     int height;
 
+    avlNode<T>() {m_left = m_right = nullptr; height = 0;}
+    avlNode<T>(T data) { m_data = data; m_left = m_right = nullptr; height = 0;}
+    
     //copy constructor
-    avlNode(avlNode node)
-    {
-
+    avlNode(const avlNode<T>& rhs) {
+        m_data = rhs.m_data;
+        m_left = rhs.m_left;
+        m_right = rhs.m_right;
+        height = rhs.height;
     }
-    avlNode() { m_data = 0; m_left = m_right = nullptr; height = 0;}
-    avlNode(int data) { m_data = data; m_left = m_right = nullptr; height = 0;}
-    void setHeight(){
-        height = m_left->height - m_right->height;
-    }
+    //move constructor
+    avlNode(avlNode<T> && rhs) {
+        m_data = rhs.m_data;
+        m_left = rhs.m_left;
+        rhs.m_left = nullptr;
+        m_right = rhs.m_right;
+        rhs.m_right = nullptr;
+    } 
+    
+    void height_check() { }
+    
     ~avlNode()
     {
         delete m_left;
-        m_left = nullptr;
         delete m_right;
-        m_right = nullptr;
     }
 };
 
-class avlTree
-{
-    private:
-        avlNode* m_root;
+// template <typename T>
+// class avlTree
+// {
+//     private:
+//         avlNode<T>* m_root;
 
-    public:
-        //constructors
-        avlTree();
-        avlTree(avlNode* root);
+//     public:
+//         //constructors
+//         avlTree();
+//         avlTree(avlNode* root);
 
-        //getters
-        avlNode* getRoot();
+//         //getters
+//         avlNode* getRoot();
 
-        //mutators
-        bool insert(int data);
+//         //mutators
+//         bool insert(int data);
 
-        bool remove(int data);
+//         bool remove(int data);
 
-        void setRoot();
+//         void setRoot();
         
-        bool find(int data);
+//         bool find(int data);
 
-        int getMax();
-        int getMin();
 
-        void balance();
+//         void balance();
   
-        //print
-        void printAVL();
-    protected:
-        bool insert(int data, avlNode* root);
-        bool remove(int data, avlNode* root);
-        void balance(avlNode* root);
+//         //print
+//         void printAVL();
+//     protected:
+//         bool insert(int data, avlNode* root);
+//         bool remove(int data, avlNode* root);
+//         void balance(avlNode* root);
 
-};
+//};
 
 #endif

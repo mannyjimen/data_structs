@@ -8,7 +8,7 @@ int main()
     // avlNode<int> third(7, pthird, psecond, 1);
     
     // std::cout << third.m_left->height;
-    avlNode<int> once(5);
-    avlNode<int> twice(std::move(once));
+    avlNode<std::string> once("Hello");
+    avlNode<std::string> twice = (std::move(once));
     std::cout << once.m_data << " " << twice.m_data << "\n";
 }

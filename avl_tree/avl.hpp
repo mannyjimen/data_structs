@@ -61,7 +61,10 @@ struct avlNode
     {
         if (this != &rhs)
         {
-
+            m_data = std::move(rhs.m_data); 
+            m_left = rhs.m_left; //shallow copy 
+            m_right = rhs.m_right; //shallow copy
+            height = rhs.height;
         }
         return *this;
     }
@@ -73,39 +76,35 @@ struct avlNode
     }
 };
 
-// template <typename T>
-// class avlTree
-// {
-//     private:
-//         avlNode<T>* m_root;
+template <typename T>
+class avlTree
+{
+    private:
+        avlNode<T>* m_root;
 
-//     public:
-//         //constructors
-//         avlTree();
-//         avlTree(avlNode* root);
+    public:
+        //constructors
+        avlTree<T>();
+        avlTree<T>(avlNode<T>* root);
 
-//         //getters
-//         avlNode* getRoot();
+        //getters
+        avlNode<T>* getRoot();
+        bool find(int data);
+        //mutators
+        bool insert(int data);
+        bool remove(int data);
 
-//         //mutators
-//         bool insert(int data);
+        void setRoot();
 
-//         bool remove(int data);
+        //balancing tree
+        void balance();
+        //print
+        void printAVL();
+    protected:
+        bool insert(int data, avlNode<T>* root);
+        bool remove(int data, avlNode<T>* root);
+        void balance(avlNode<T>* root);
 
-//         void setRoot();
-        
-//         bool find(int data);
-
-
-//         void balance();
-  
-//         //print
-//         void printAVL();
-//     protected:
-//         bool insert(int data, avlNode* root);
-//         bool remove(int data, avlNode* root);
-//         void balance(avlNode* root);
-
-//};
+};
 
 #endif

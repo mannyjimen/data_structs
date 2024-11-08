@@ -68,6 +68,31 @@ struct avlNode
         }
         return *this;
     }
+
+    //update height for node (should be called after insert/remove in avltree)
+    void updateHeight() //updates height for this node and everything below it.
+    {
+        height = maxHeight(this);
+    }
+
+    int maxHeight(avlNode<T>* currNode) //preorder traversal
+    {
+        int currMaxLeft = 0;
+        int currMaxRight = 0;
+        if (!currNode->m_left && !currNode->m_right)
+            return 0;
+        else{
+            if (currNode->m_left)
+                currMaxLeft = 1 + maxHeight(currNode->m_left);
+                //currNode->m_left->height = currMaxLeft;
+            if (currNode->m_right)   
+                currMaxRight = 1 + maxHeight(currNode->m_right);
+                //currNode->m_right->height = currMaxRight;  
+        }
+        if (currMaxLeft > currMaxRight)
+            return currMaxLeft;
+        return currMaxRight;
+    }
     
     ~avlNode()
     {

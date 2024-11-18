@@ -2,13 +2,27 @@
 
 int main()
 {
-    // avlNode<int> first(5);
-    // avlNode<int>* psecond = new avlNode<int>(8);
-    // avlNode<int>* pthird = new avlNode<int>(3);
-    // avlNode<int> third(7, pthird, psecond, 1);
+    avlNode<int>* doug = new avlNode<int>(5);
+    avlNode<int>* cher = new avlNode<int>(7);
+    avlNode<int>* trav = new avlNode<int>(2);
+    avlNode<int>* kite = new avlNode<int>(1);
+    avlNode<int>* marj = new avlNode<int>(8);
+
+    doug->m_right = cher;  
+    trav->m_left = kite;
+    cher->m_right = trav;
+    kite->m_left = marj;
     
-    // std::cout << third.m_left->height;
-    avlNode<std::string> once("Hello");
-    avlNode<std::string> twice = (std::move(once));
-    std::cout << once.m_data << " " << twice.m_data << "\n";
+    doug->updateHeight();
+    std::cout << doug->height << "\n";
+
+    //          doug
+    //      null     cher
+    //                   trav
+    //                 kite
+    //              marj
+
+    // avlNode<std::string> once("Hello");
+    // avlNode<std::string> twice = (std::move(once));
+    // std::cout << "Once Data: " << once.m_data << "\n" << "Twice Data: " << twice.m_data << "\n";
 }

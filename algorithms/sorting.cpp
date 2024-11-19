@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
-void printVec(const std::vector<int>& nums) //helper function to print vector
+template <typename T>
+void printVec(const std::vector<T>& nums) //helper function to print vector
 {
     for (auto x: nums)
         std::cout << x << " ";
@@ -46,9 +48,7 @@ void mergeSort(std::vector<int>& nums, int left, int right){
 
 int main()
 {
-    std::vector<int> nums{4, 5, 1, 2, 7, 3, 8};
-    //selectionSort(nums);
-    // insertionSort(nums);
-    mergeSort(nums, 0, nums.size() - 1);
+    std::vector<int> nums{1,2,3,4,5};
+    int temp = std::move(nums[2]);
     printVec(nums);
 }
